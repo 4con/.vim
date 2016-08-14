@@ -10,9 +10,8 @@ Install
 
   cd ~
   git clone https://github.com/4con/.vim .vim
-  mkdir -p .vim/repos/github.com/Shougo
   git clone https://github.com/Shougo/dein.vim .vim/repos/github.com/Shougo/dein.vim
   echo source ~/.vim/vimrc>.vimrc
-
+  
 Finished!, just run vim to install all plugins.
 
