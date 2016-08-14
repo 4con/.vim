@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Dein settings.
+" Dein settings.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &compatible
   set nocompatible               " Be iMproved
@@ -58,11 +58,32 @@ endif
 " call dein#recache_runtimepath()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Basic settings.
+" Basic settings.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set background=dark
-colorscheme desert
+
+" Enable xterm 256 settings
+if &term=~# '^xterm'
+  let &t_Co=256
+  let &t_AF="\e[38;5;%dm"
+  let &t_AB="\e[48;5;%dm"
+
+  " Use solarized colorscheme
+  set background=dark
+  let g:solarized_termcolors=256
+  colorscheme solarized
+elseif has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  set background=dark
+  colorscheme desert
+endif
+
+if has('mouse')
+  set mouse=a
+endif
 
 set number
 set backspace=indent,eol,start
@@ -73,30 +94,31 @@ set so=7
 set colorcolumn=80
 map Q gq
 
-"Tab setting
+" Tab setting
 set shiftwidth=2
 set tabstop=2
 set expandtab
 set smarttab
 
-"Search
+" Search
 set ignorecase
 set smartcase
 set incsearch
+set hlsearch
 
-"mapleader
+" mapleader
 let mapleader=","
 
-"Fast reloading for .vimrc
+" Fast reloading for .vimrc
 map <silent> <leader>ss :source ~/.vim/vimrc<cr>
 map <silent> <leader>ee :e ~/.vim/vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
-"Recover from accidental Ctrl-U
+" Recover from accidental Ctrl-U
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
-"map ctrl+s to save.
+" map ctrl+s to save.
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
@@ -156,7 +178,7 @@ let g:riv_fold_level = 1
 let g:riv_fold_blank = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Neocomplete
+" Neocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -241,7 +263,7 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Neosnippet
+" Neosnippet
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Plugin key-mappings.
@@ -264,4 +286,31 @@ endif
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = "~/.vim/snippets"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos="right"
+map <leader>t :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>o :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>f :<C-u>Unite file_rec/async:!<CR>
+
+let g:unite_source_history_yank_enable=1
+nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <silent> <leader>b :<C-u>Unite buffer bookmark<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" drawit
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:drawit_mode='N'
+
 
