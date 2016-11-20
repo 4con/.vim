@@ -44,6 +44,12 @@ call dein#add('sudo.vim')
 
 call dein#add('vim-airline/vim-airline')
 
+"Rust lang
+call dein#add('rust-lang/rust.vim')
+
+"easy align
+call dein#add('junegunn/vim-easy-align')
+
 " Required:
 call dein#end()
 
@@ -314,5 +320,11 @@ set laststatus=2
 " drawit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:drawit_mode='N'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easy align
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 
