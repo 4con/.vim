@@ -34,13 +34,13 @@ call dein#add('plasticboy/vim-markdown')
 
 call dein#add('guns/xterm-color-table.vim')
 
-call dein#add('L9')
-call dein#add('taglist.vim')
+call dein#add('vim-scripts/L9')
+call dein#add('vim-scripts/taglist.vim')
 call dein#add('majutsushi/tagbar')
 
-call dein#add('TagHighlight')
-call dein#add('DrawIt')
-call dein#add('sudo.vim')
+call dein#add('vim-scripts/TagHighlight')
+call dein#add('vim-scripts/DrawIt')
+call dein#add('vim-scripts/sudo.vim')
 
 call dein#add('vim-airline/vim-airline')
 
