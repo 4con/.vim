@@ -135,9 +135,9 @@ set hlsearch
 let mapleader=","
 
 " Fast reloading for .vimrc
-map <silent> <leader>ss :source ~/.vim/vimrc<cr>
-map <silent> <leader>ee :e ~/.vim/vimrc<cr>
-autocmd! bufwritepost vimrc source ~/.vim/vimrc
+map <silent> <leader>ss :source ~/.vim/vimrc.nvim<cr>
+map <silent> <leader>ee :e ~/.vim/vimrc.nvim<cr>
+autocmd! bufwritepost vimrc source ~/.vim/vimrc.nvim
 
 " Recover from accidental Ctrl-U
 inoremap <c-u> <c-g>u<c-u>
