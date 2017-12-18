@@ -25,6 +25,7 @@ if dein#load_state('~/.vim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/deol.nvim')
 
   " colorscheme
   if has('nvim')
@@ -137,7 +138,7 @@ let mapleader=","
 " Fast reloading for .vimrc
 map <silent> <leader>ss :source ~/.vim/vimrc.nvim<cr>
 map <silent> <leader>ee :e ~/.vim/vimrc.nvim<cr>
-autocmd! bufwritepost vimrc source ~/.vim/vimrc.nvim
+autocmd! bufwritepost vimrc.nvim source ~/.vim/vimrc.nvim
 
 " Recover from accidental Ctrl-U
 inoremap <c-u> <c-g>u<c-u>
@@ -181,8 +182,37 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " deoplete
+" Use deoplete.
 let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
 
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
+" Smart TAB
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" denite
+nnoremap <silent> <leader>b :<C-u>Denite buffer<cr>
+nnoremap <silent> <leader>f :<C-u>Denite file_rec<cr>
+
+" deol
+nnoremap <silent> <leader>s :<C-u>Deol<cr>
 
 " Taglist & Tagbar
 let g:tagbar_ctags_bin='ctags'
@@ -214,4 +244,4 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "==============================================================================
-" vim:tw=78:ts=8:ft=help:norl:noet:fen:
+" vim:tw=78:ts=8:ft=vim:norl:noet:fen:

@@ -327,4 +327,5 @@ let g:drawit_mode='N'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-
+"==============================================================================
+" vim:ts=2:ft=vim:norl:noet:fen:
