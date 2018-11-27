@@ -129,6 +129,9 @@ set hlsearch
 " mapleader
 let mapleader=","
 
+" map ESC
+inoremap <leader><leader> <Esc>
+
 " Fast reloading for .vimrc
 map <silent> <leader>ss :source ~/.vim/vimrc.nvim<cr>
 map <silent> <leader>ee :e ~/.vim/vimrc.nvim<cr>
